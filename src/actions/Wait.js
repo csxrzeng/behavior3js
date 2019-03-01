@@ -33,7 +33,7 @@ export default class Wait extends Action {
    * @param {Tick} tick A tick instance.
    **/
   open(tick) {
-    var startTime = (new Date()).getTime();
+    var startTime = Date.now();
     tick.blackboard.set('startTime', startTime, tick.tree.id, this.id);
   }
 
@@ -44,7 +44,7 @@ export default class Wait extends Action {
    * @return {Constant} A state constant.
    **/
   tick(tick) {
-    var currTime = (new Date()).getTime();
+    var currTime = Date.now();
     var startTime = tick.blackboard.get('startTime', tick.tree.id, this.id);
 
     if (currTime - startTime > this.endTime) {

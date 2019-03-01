@@ -28,7 +28,7 @@ export default class Repeater extends Decorator {
     super({
       child,
       name: 'Repeater',
-      title: 'Repeat <maxLoop>x',
+      title: '循环<m>次',//'Repeat <maxLoop>x',
       properties: {maxLoop: -1},
     });
 
@@ -61,7 +61,7 @@ export default class Repeater extends Decorator {
       status = this.child._execute(tick);
 
       if (status == SUCCESS || status == FAILURE) {
-          i++;
+        i++;
       } else {
         break;
       }

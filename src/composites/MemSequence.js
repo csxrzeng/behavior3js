@@ -23,6 +23,7 @@ export default class MemSequence extends Composite {
   constructor({children = []} = {}){
     super({
       name: 'MemSequence',
+      title: '记忆顺序',
       children
     });
   }

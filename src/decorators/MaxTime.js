@@ -29,7 +29,7 @@ export default class MaxTime extends Decorator {
     super({
       child,
       name: 'MaxTime',
-      title: 'Max <maxTime>ms',
+      title: '超时',//'Max <maxTime>ms',
       properties: {maxTime: 0},
     });
 
@@ -46,7 +46,7 @@ export default class MaxTime extends Decorator {
    * @param {Tick} tick A tick instance.
    **/
   open(tick) {
-    var startTime = (new Date()).getTime();
+    var startTime = Date.now();
     tick.blackboard.set('startTime', startTime, tick.tree.id, this.id);
   }
 
@@ -61,7 +61,7 @@ export default class MaxTime extends Decorator {
       return ERROR;
     }
 
-    var currTime = (new Date()).getTime();
+    var currTime = Date.now();
     var startTime = tick.blackboard.get('startTime', tick.tree.id, this.id);
 
     var status = this.child._execute(tick);

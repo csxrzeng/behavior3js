@@ -15,7 +15,7 @@ suite('Decorator: MaxTime', function() {
         child._execute.returns(RUNNING);
 
         var node = new MaxTime({maxTime: 15, child});
-        var startTime = (new Date()).getTime();
+        var startTime = Date.now();
 
         tick.blackboard.get.returns(startTime - 14);
         assert.equal(node.tick(tick), RUNNING);
@@ -30,7 +30,7 @@ suite('Decorator: MaxTime', function() {
         child._execute.returns(SUCCESS);
 
         var node = new MaxTime({maxTime: 15, child});
-        var startTime = (new Date()).getTime();
+        var startTime = Date.now();
 
         tick.blackboard.get.returns(startTime - 14);
         assert.equal(node.tick(tick), SUCCESS);

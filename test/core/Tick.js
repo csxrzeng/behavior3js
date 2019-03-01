@@ -8,7 +8,7 @@ suite('Core: Tick', function() {
         var tick = new Tick();
 
         assert.equal(tick._nodeCount, 0);
-        assert.equal(tick._openNodes.length, 0);
+        assert.deepEqual(tick._openNodes, {});
     });
 
     test('Updating tick info on enter', function() {
@@ -17,8 +17,8 @@ suite('Core: Tick', function() {
 
         tick._enterNode(node);
         assert.equal(tick._nodeCount, 1);
-        assert.equal(tick._openNodes.length, 1);
-        assert.strictEqual(tick._openNodes[0], node);
+        assert.deepEqual(tick._openNodes, {'node1':node});
+        assert.strictEqual(tick._openNodes['node1'], node);
     });
 
     test('Updating tick info on close', function() {
@@ -26,11 +26,11 @@ suite('Core: Tick', function() {
         var node = {'id': 'node1'}
 
         tick._nodeCount = 1;
-        tick._openNodes = [node];
+        tick._openNodes = {[node.id]:node};
 
         tick._closeNode(node);
         assert.equal(tick._nodeCount, 1);
-        assert.equal(tick._openNodes.length, 0);
+        assert.deepEqual(tick._openNodes, {});
     });
 
     test.skip('Callbacks calling debug');

@@ -309,23 +309,18 @@ export default class BehaviorTree {
 
     /* CLOSE NODES FROM LAST TICK, IF NEEDED */
     var lastOpenNodes = blackboard.get('openNodes', this.id);
-    var currOpenNodes = tick._openNodes.slice(0);
-
+    var currOpenNodes = tick._openNodes;
+    
     // does not close if it is still open in this tick
-    var start = 0;
-    var i;
-    for (i = 0; i < Math.min(lastOpenNodes.length, currOpenNodes.length); i++) {
-      start = i + 1;
-      if (lastOpenNodes[i] !== currOpenNodes[i]) {
-        break;
-      }
-    }
-
     // close the nodes
-    for (i = lastOpenNodes.length - 1; i >= start; i--) {
-      lastOpenNodes[i]._close(tick);
+    for (let id in lastOpenNodes) {
+      if (!(id in currOpenNodes)) {
+        lastOpenNodes[id]._close(tick);
+      }
+      delete lastOpenNodes[id];
     }
 
+    tick._openNodes = lastOpenNodes; // switch storage
     /* POPULATE BLACKBOARD */
     blackboard.set('openNodes', currOpenNodes, this.id);
     blackboard.set('nodeCount', tick._nodeCount, this.id);

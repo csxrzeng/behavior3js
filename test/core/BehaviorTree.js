@@ -48,20 +48,22 @@ suite('Core: Behavior Tree', function() {
     test('Populate blackboard', function() {
         var tree = new BehaviorTree();
         var blackboard = getBlackboard();
-        var target = {}
+        var target = {};
+        var node1 = getClosableNode('node1');
+        var node2 = getClosableNode('node2');
         var node = {'_execute': function(tick) {
-            tick._enterNode('node1'),
-            tick._enterNode('node2')
+            tick._enterNode(node1),
+            tick._enterNode(node2)
         }};
 
         blackboard.get.withArgs('openNodes', 'tree1')
-                      .returns([]);
+                      .returns({});
 
         tree.id = 'tree1';
         tree.root = node;
         tree.tick(target, blackboard);
 
-        var method = blackboard.set.withArgs('openNodes', ['node1', 'node2'], 'tree1');
+        var method = blackboard.set.withArgs('openNodes', {'node1':node1, 'node2':node2}, 'tree1');
         assert.isTrue(method.calledOnce);
 
         method = blackboard.set.withArgs('nodeCount', 2, 'tree1');
@@ -87,7 +89,7 @@ suite('Core: Behavior Tree', function() {
             tick._enterNode(node3);
         }};
         blackboard.get.withArgs('openNodes', 'tree1')
-                      .returns([node1, node2, node3, node4, node5, node6, node7])
+                      .returns({'node1':node1, 'node2':node2, 'node3':node3, 'node4':node4, 'node5':node5, 'node6':node6, 'node7':node7})
                       .withArgs('nodeCount', 'tree1')
                       .returns(7);
 
@@ -121,7 +123,7 @@ suite('Core: Behavior Tree', function() {
             tick._enterNode(node4);
         }};
         blackboard.get.withArgs('openNodes', 'tree1')
-                      .returns([node1, node2])
+                      .returns({'node1':node1, 'node2':node2})
                       .withArgs('nodeCount', 'tree1')
                       .returns(2);
 

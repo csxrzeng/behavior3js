@@ -57,12 +57,12 @@ export default class Tick {
     // updated during the tick signal
 
     /**
-     * The list of open nodes. Update during the tree traversal.
-     * @property {Array} _openNodes
+     * The list of open nodes. Update during the tree traversal. 改成Object
+     * @property {any} _openNodes
      * @protected
      * @readOnly
      **/
-    this._openNodes = [];
+    this._openNodes = {};
 
     /**
      * The number of nodes entered during the tick. Update during the tree
@@ -83,7 +83,7 @@ export default class Tick {
    **/
   _enterNode(node) {
     this._nodeCount++;
-    this._openNodes.push(node);
+    this._openNodes[node.id] = node;
 
     // TODO: call debug here
   }
@@ -116,7 +116,7 @@ export default class Tick {
    **/
   _closeNode(node) {
     // TODO: call debug here
-    this._openNodes.pop();
+    delete this._openNodes[node.id];
   }
 
   /**

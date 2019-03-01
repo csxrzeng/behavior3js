@@ -4,6 +4,9 @@
  * @module functions
 **/
 
+var s = [];
+var hexDigits = "0123456789abcdef";
+
 /**
 * This function is used to create unique IDs for trees and nodes.
 *
@@ -14,8 +17,7 @@
 * @return {String} A unique ID.
 **/
 export function createUUID() {
-  var s = [];
-  var hexDigits = "0123456789abcdef";
+  // var s = [];
   for (var i = 0; i < 36; i++) {
     s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
   }

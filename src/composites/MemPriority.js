@@ -1,5 +1,5 @@
 import Composite from '../core/Composite';
-import {FAILURE, RUNNING} from '../constants';
+import { FAILURE, RUNNING } from '../constants';
 
 /**
  * MemPriority is similar to Priority node, but when a child returns a
@@ -24,6 +24,7 @@ export default class MemPriority extends Composite {
     super({
       children,
       name: 'MemPriority',
+      title: '记忆选择'
     });
   }
 

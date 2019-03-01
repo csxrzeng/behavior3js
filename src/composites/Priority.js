@@ -22,6 +22,7 @@ export default class Priority extends Composite {
   constructor({children = []} = {}){
     super({
       name: 'Priority',
+      title: '选择',
       children
     });
   }

@@ -7,3 +7,23 @@ export const COMPOSITE = 'composite';
 export const DECORATOR = 'decorator';
 export const ACTION = 'action';
 export const CONDITION = 'condition';
+
+export class Counter {
+    /**
+     * 
+     * @param  {...any} keys keys
+     */
+    constructor(...keys) {
+        this._keys = keys;
+        this.reset();
+    }
+
+    reset() {
+        for (let i of this._keys) {
+            this[i] = 0;
+        }
+        return this;
+    }
+};
+
+export let STATUS_COUNT_TEMP = new Counter(SUCCESS, FAILURE, RUNNING, ERROR);

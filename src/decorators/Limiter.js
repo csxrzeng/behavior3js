@@ -30,7 +30,7 @@ export default class Limiter extends Decorator {
     super({
       child,
       name: 'Limiter',
-      title: 'Limit <maxLoop> Activations',
+      title: '最多运行<m>次',//'Limit <maxLoop> Activations',
       properties: {maxLoop: 1},
     });
 

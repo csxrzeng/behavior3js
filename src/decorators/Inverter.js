@@ -22,6 +22,7 @@ export default class Inverter extends Decorator {
     super({
       child,
       name: 'Inverter',
+      title: '取反'
     });
   }
 

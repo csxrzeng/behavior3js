@@ -22,6 +22,7 @@ export default class Sequence extends Composite {
   constructor({children = []} = {}){
     super({
       name: 'Sequence',
+      title: '顺序',
       children
     });
   }

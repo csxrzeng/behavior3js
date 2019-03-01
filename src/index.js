@@ -11,6 +11,8 @@ import MemPriority from './composites/MemPriority';
 import MemSequence from './composites/MemSequence';
 import Priority from './composites/Priority';
 import Sequence from './composites/Sequence';
+import Parallel from './composites/Parallel';
+import MemParallel from './composites/MemParallel';
 
 import Action from './core/Action';
 import BaseNode from './core/BaseNode';
@@ -48,6 +50,8 @@ export {
   MemSequence,
   Priority,
   Sequence,
+  Parallel,
+  MemParallel,
   Action,
   BaseNode,
   BehaviorTree,
