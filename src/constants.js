@@ -19,8 +19,8 @@ export class Counter {
     }
 
     reset() {
-        for (let i of this._keys) {
-            this[i] = 0;
+        for (let i in this._keys) {
+            this[this._keys[i]] = 0;
         }
         return this;
     }
